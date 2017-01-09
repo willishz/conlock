@@ -3,15 +3,12 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <groupId>org.wllishz</groupId>
+        <groupId>org.willishz</groupId>
         <artifactId>conlock</artifactId>
         <version>1.0</version>
     </parent>
     <artifactId>conlock-client</artifactId>
-    <version>1.0</version>
-    <name>conlock</name>
-    <description>A java distributed concurrent lock based on dubbo, provide consistent on scence like inventory control while rush buying.</description>
-    <packaging>pom</packaging>
+    <packaging>jar</packaging>
 
 	  <properties>
 	    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

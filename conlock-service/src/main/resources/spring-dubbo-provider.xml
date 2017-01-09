@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://code.alibabatech.com/schema/dubbo
+        http://code.alibabatech.com/schema/dubbo/dubbo.xsd
+        ">
+
+    <dubbo:application name="conlock-service"/>
+
+    <dubbo:registry address="${dubbo.registry.address}" file="/opt/app/logs/conlock-service/dubbo.cache"/>
+
+    <dubbo:protocol name="dubbo" port="20881" charset="UTF-8"
+                    threadpool="fixed" threads="100" queues="0" iothreads="9" buffer="8192"
+                    accepts="1000" payload="8388608"/>
+
+    <dubbo:provider delay="-1" timeout="5000" retries="0"/>
+
+    <bean id="conlockService" class="org.willishz.conlock.service.impl.ConlockServiceImpl" />
+
+    <dubbo:service interface="org.willishz.conlock.service.ConlockService" ref="conlockService" />
+</beans>
