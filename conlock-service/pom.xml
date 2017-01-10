@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
@@ -21,7 +22,6 @@
             <artifactId>conlock-rely</artifactId>
             <version>${conlock.version}</version>
         </dependency>
-        <!-- spring -->
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-web</artifactId>
@@ -221,7 +221,6 @@
     </dependencies>
 
     <profiles>
-        <!--开发环境，默认激活 -->
         <profile>
             <id>dev</id>
             <properties>
@@ -231,20 +230,6 @@
                 <activeByDefault>true</activeByDefault>
             </activation>
         </profile>
-        <!--测试环境 -->
-        <profile>
-            <id>qa1</id>
-            <properties>
-                <env>qa1</env>
-            </properties>
-        </profile>
-        <profile>
-            <id>qa2</id>
-            <properties>
-                <env>qa2</env>
-            </properties>
-        </profile>
-        <!--生产环境 -->
         <profile>
             <id>prod</id>
             <properties>
@@ -254,6 +239,20 @@
     </profiles>
 
     <build>
+        <filters>
+            <filter>../filters/${env}.properties</filter>
+        </filters>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+            </resource>
+            <resource>
+                <directory>src/test/resources</directory>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
+
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -263,7 +262,16 @@
                     <encoding>${project.build.sourceEncoding}</encoding>
                 </configuration>
             </plugin>
-
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.1</version>
+                <configuration>
+                    <source>1.7</source>
+                    <target>1.7</target>
+                    <encoding>${project.build.sourceEncoding}</encoding>
+                </configuration>
+            </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-assembly-plugin</artifactId>
@@ -272,18 +280,14 @@
                     <encoding>${project.build.sourceEncoding}</encoding>
                     <appendAssemblyId>false</appendAssemblyId>
                     <descriptors>
-                        <!-- 描述文件路径 -->
                         <descriptor>src/main/assembly/assembly.xml</descriptor>
                     </descriptors>
                 </configuration>
                 <executions>
                     <execution>
-                        <!-- 名字任意 -->
                         <id>make-assembly</id>
-                        <!-- 绑定到package生命周期阶段上 -->
                         <phase>package</phase>
                         <goals>
-                            <!-- 只运行一次 -->
                             <goal>single</goal>
                         </goals>
                     </execution>
