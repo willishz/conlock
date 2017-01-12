@@ -12,8 +12,8 @@
 
     <dubbo:application name="conlock-client" />
 
-    <dubbo:registry address="${dubbo.registry.address}" file="/opt/app/logs/conlock-service/dubbo.cache"/>
+    <dubbo:registry address="zookeeper://127.0.0.1:2181" file="/opt/app/logs/conlock-service/dubbo.cache"/>
 
-    <dubbo:reference id="conlockServiceConsumer" interface="org.willishz.conlock.service.ConlockService" protocol="dubbo" check="false" async="false" retries="2" timeout="1000" />
+    <dubbo:reference id="conlockService" interface="org.willishz.conlock.service.ConlockService" protocol="dubbo" check="false" async="false" retries="2" timeout="60000" />
 
 </beans>

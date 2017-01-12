@@ -14,4 +14,13 @@
     <context:annotation-config/>
     <context:component-scan base-package="org.willishz.conlock.*"/>
 
+    <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="ignoreResourceNotFound" value="true"/>
+        <property name="ignoreUnresolvablePlaceholders" value="true"/>
+        <property name="locations">
+            <list>
+                <value>classpath:dubbo.properties</value>
+            </list>
+        </property>
+    </bean>
 </beans>
