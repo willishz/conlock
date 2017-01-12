@@ -1,11 +1,12 @@
 package org.willishz.conlock.service;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 
 /**
- * Created by luzongwei on 2017/1/12.
+ * @author willishz Lu
  */
-public class PurchaseAction implements QueueElement {
+public class PurchaseAction implements Serializable {
     Integer userId;
     BigDecimal amount;
 
@@ -33,11 +34,6 @@ public class PurchaseAction implements QueueElement {
 
     public void setAmount(BigDecimal amount) {
         this.amount = amount;
-    }
-
-    @Override
-    public BigDecimal getLimit() {
-        return amount;
     }
 
     public String toString() {

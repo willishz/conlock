@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.test.context.ContextConfiguration;
 import org.willishz.conlock.service.ConlockService;
 import org.willishz.conlock.service.PurchaseAction;
-import org.willishz.conlock.service.QueueElement;
 
 import java.math.BigDecimal;
 import java.util.Random;

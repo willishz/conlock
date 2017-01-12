@@ -59,8 +59,8 @@ public class ConlockServiceImpl implements ConlockService {
     public boolean offer(String key, PurchaseAction element) {
         linkedBlockingQueueLimitLockMap.get(key).lock();
         try {
-            if (linkedBlockingQueueCurrentMap.get(key).add(element.getLimit()).compareTo(linkedBlockingQueueLimitMap.get(key)) <= 0) {
-                linkedBlockingQueueCurrentMap.put(key, linkedBlockingQueueCurrentMap.get(key).add(element.getLimit()));
+            if (linkedBlockingQueueCurrentMap.get(key).add(element.getAmount()).compareTo(linkedBlockingQueueLimitMap.get(key)) <= 0) {
+                linkedBlockingQueueCurrentMap.put(key, linkedBlockingQueueCurrentMap.get(key).add(element.getAmount()));
                 return linkedBlockingQueueKeyMap.get(key).offer(element);
             } else {
                 return false;
